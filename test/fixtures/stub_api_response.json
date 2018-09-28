@@ -1,0 +1,39 @@
+{"resultID": "aae5379b891a",
+  "status": 1,
+  "message": "pointed out",
+  "inputSentence": "システムの規格から開発・運用まＤ幅広く関われます。",
+  "normalizedSentence": "システムの規格から開発・運用まD幅広く関われます。",
+  "checkedSentence": "システムの <<規>>  <<格>> から開発・運用ま <<D>> 幅広く関われます。",
+  "alerts": [
+    {
+      "pos": 5,
+      "word": "規",
+      "score": 0.9985831734428979,
+      "suggestions": [
+        "企",
+        "価",
+        "資"
+      ]
+    },
+    {
+      "pos": 6,
+      "word": "格",
+      "score": 0.9988025358800012,
+      "suggestions": [
+        "画",
+        "定",
+        "模"
+      ]
+    },
+    {
+      "pos": 15,
+      "word": "D",
+      "score": 1,
+      "suggestions": [
+        "で",
+        "が",
+        "と"
+      ]
+    }
+  ]
+}
