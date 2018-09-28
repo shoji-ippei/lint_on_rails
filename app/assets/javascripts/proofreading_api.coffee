@@ -2,9 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-#$ ->
-#  $('#checked_wrap')
-#    .on 'ajax:complete', (event) ->
-#    console.log(event);
-#    response = event.detail[0].response
-#    $('#checked_wrap').html(response)
+$ ->
+  $('#request_ajax_update').on 'ajax:complete', (event) ->
+    if res = event.detail
+      return $('#edit_input').html(event.detail[0].response)
+    return
+  return

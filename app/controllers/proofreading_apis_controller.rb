@@ -7,13 +7,10 @@ class ProofreadingApisController < ApplicationController
     @res = ProofreadingApi.new(api_params)
 
     if @res.valid?
-      p @lint_text = @res.request["checkedSentence"]
-      p 'valid'
+      @lint_text = @res.request["checkedSentence"]
       render partial: 'result', locals: {lint_text: @lint_text}
-
     else
-      p 'failed'
-      p @res.errors.messages
+      @res.errors.messages
     end
   end
 

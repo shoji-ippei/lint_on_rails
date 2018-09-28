@@ -3,7 +3,22 @@
     <h1>校正API DEMO</h1>
     <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
 
-    <%= render 'form', proofreading_api: @req %>
+    <div id="request_ajax_update" >
+      <%= form_with model: @proofreading_api, url: request_path, id: 'text_form', method: :get do |f| %>
+        <div class="col-md-5">
+          <div class="form-group">
+            <%= f.text_field :text, maxlength: 500, value: 'システムの規格から開発・運用まＤ幅広く関われます。', class: "form-control lint_text" %>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <%= f.submit "Do It!!", class: 'btn btn-lg btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="checked_wrap">
+      <textarea id="edit_input" style="width: 100%;" rows="20">DEFAULT</textarea>
+    </div>
 
   </div>
 </div>
@@ -35,4 +50,3 @@
     </ul>
   </div>
 </nav>
-

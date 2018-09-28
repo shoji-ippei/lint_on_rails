@@ -26,4 +26,12 @@ class ProofreadingApi
     client.get(uri, params)
   end
 
+  private
+
+  def format_text(checked_sentense)
+    while checked_sentense =~ /^.*(\s<<).(>>\s)/
+      #checked_sentense.gsub
+    end
+  end
+
 end

@@ -10,7 +10,13 @@
     </div>
     <div class="col-md-5">
       <div id="checked_wrap">
-        <textarea id="edit_input" style="width: 100%;" rows="20">DEFAULT</textarea>
+        <textarea id="edit_input" style="width: 100%;" rows="20">
+          <% if @lint_text %>
+            <%= @lint_text %>
+          <% else %>
+            DEFAULT
+          <% end %>
+        </textarea>
       </div>
     </div>
   </div>
