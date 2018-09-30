@@ -1,0 +1,7 @@
+ja:
+  activemodel:
+    models:
+      proofreading_api: 文章校正
+    attributes:
+      proofreading_api:
+        text: 文章
