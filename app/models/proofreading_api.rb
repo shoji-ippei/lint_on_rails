@@ -1,6 +1,7 @@
 class ProofreadingApi
   #include ApiModule
   include ActiveModel::Model
+  include ActiveModel::Validations
 
   require 'httpclient'
 
@@ -9,33 +10,32 @@ class ProofreadingApi
   validates :text, presence: true, length: {maximum: 500}
 
   def request
-    res = self.call_get_api
-    body = JSON.parse(res.body)
-    checked_sentense = body["checkedSentence"]
-    return format_text(checked_sentense)
-  end
-
-  def call_get_api
     api_key = Rails.application.secrets.api_key
-    uri = "https://api.a3rt.recruit-tech.co.jp/proofreading/v2/typo"
+    uri = Rails.application.secrets.proofreading_uri
 
     params = {
         apikey: api_key,
         sentence: self.text
     }
-
     client = HTTPClient.new
-    client.get(uri, params)
+    res = client.get(uri, params)
+
+    return validate_result(JSON.parse(res.body))
   end
 
   private
 
-  def format_text(checked_sentense)
-    while checked_sentense =~ /^.*(\s<<)|^.*(>>\s)/
+  # API側のエラーレスポンスをさばく
+  def validate_result(response_body)
+    response_body['checkedSentence'].present? ? mark(response_body['checkedSentence']) : "エラー：コード#{response_body['status']}"
+  end
+
+  def mark(checked_sentense)
+    if checked_sentense =~ /^.*(\s<<)|^.*(>>\s)/
       checked_sentense.gsub!(checked_sentense.match(/^.*(\s<<)/)[1], '<mark>')
       checked_sentense.gsub!(checked_sentense.match(/^.*(>>\s)/)[1], '</mark>')
     end
+
     return checked_sentense
   end
-
 end

@@ -4,14 +4,16 @@ class ProofreadingApisController < ApplicationController
   end
 
   def show
-    @res = ProofreadingApi.new(api_params)
+    @proofreading = ProofreadingApi.new(api_params)
 
-    if @res.valid?
-      @lint_text = @res.request #@res.request["checkedSentence"]
-      render partial: 'result', locals: {lint_text: @lint_text}
-    else
-      @res.errors.messages
+    #アプリ側のエラーをさばく
+    begin
+      response = @proofreading.valid? ? @proofreading.request : @proofreading.errors.full_messages.join("\n")
+    rescue => e
+      response = "アプリケーションエラー：[#{e.class}]#{e.message}"
     end
+
+    render partial: 'result', locals: {lint_text: response}
   end
 
   private

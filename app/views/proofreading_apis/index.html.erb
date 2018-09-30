@@ -1,28 +1,30 @@
 <div class="container">
-  <div class="jumbotron mt-3">
-    <h1>校正API DEMO</h1>
-    <p class="lead">文字校正を行ってくれるAPIを利用したツールです。一度に500文字までチェックできます。</p>
+  <div class="row">
+    <div class="jumbotron mt-3 col-md-12">
+      <h1>校正API DEMO</h1>
+      <p class="lead">誤字脱字チェックを行ってくれるAPIを利用したツールです。一度に500文字までチェックできます。</p>
 
-    <div id="request_ajax_update">
-      <%= form_with model: @proofreading_api, url: request_path, id: 'text_form', class: 'row', method: :get do |f| %>
-        <div class="col-md-5 lint_inline">
-          <div class="form-group">
-            <%= f.text_area :text, maxlength: 500, rows: 20, value: 'システムの規格から開発・運用まＤ幅広く関われます。', class: "form-control lint_text" %>
+      <div id="request_ajax_update">
+        <%= form_with model: @proofreading_api, url: request_path, id: 'text_form', class: 'row', method: :get do |f| %>
+          <div class="col-lg-5 col-md-12 lint_inline">
+            <div class="form-group">
+              <%= f.text_area :text, maxlength: 500, rows: 20, value: 'チェックの対照となる文章をここに入力してくさだい。これはテスT用の文章です。', class: "form-control lint_text" %>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-2 lint_inline">
-          <div class="form-group">
-            <%= f.submit "校正チェック", class: 'btn btn-lg btn-primary center' %>
+          <div class="col-lg-2 col-md-12 lint_inline">
+            <div class="form-group">
+              <%= f.submit "校正チェック▶︎", class: 'btn btn-lg btn-primary' %>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-5 lint_inline">
-          <div id="checked_wrap" class="lint_text">
-            <p>DEFAULT</p>
+          <div class="col-lg-5 col-md-12 lint_inline">
+            <div id="checked_wrap" class="lint_text">
+              <p>チェック後の結果がここに表示されます。</p>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
