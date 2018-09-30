@@ -5,6 +5,6 @@
 $ ->
   $('#request_ajax_update').on 'ajax:complete', (event) ->
     if res = event.detail
-      return $('#edit_input').html(event.detail[0].response)
+      return $('#checked_wrap').html(event.detail[0].response)
     return
   return

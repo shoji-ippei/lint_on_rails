@@ -1,52 +1,28 @@
 <div class="container">
   <div class="jumbotron mt-3">
     <h1>校正API DEMO</h1>
-    <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
+    <p class="lead">文字校正を行ってくれるAPIを利用したツールです。一度に500文字までチェックできます。</p>
 
-    <div id="request_ajax_update" >
-      <%= form_with model: @proofreading_api, url: request_path, id: 'text_form', method: :get do |f| %>
-        <div class="col-md-5">
+    <div id="request_ajax_update">
+      <%= form_with model: @proofreading_api, url: request_path, id: 'text_form', class: 'row', method: :get do |f| %>
+        <div class="col-md-5 lint_inline">
           <div class="form-group">
-            <%= f.text_field :text, maxlength: 500, value: 'システムの規格から開発・運用まＤ幅広く関われます。', class: "form-control lint_text" %>
+            <%= f.text_area :text, maxlength: 500, rows: 20, value: 'システムの規格から開発・運用まＤ幅広く関われます。', class: "form-control lint_text" %>
           </div>
         </div>
-        <div class="col-md-2">
-          <%= f.submit "Do It!!", class: 'btn btn-lg btn-primary' %>
+
+        <div class="col-md-2 lint_inline">
+          <div class="form-group">
+            <%= f.submit "校正チェック", class: 'btn btn-lg btn-primary center' %>
+          </div>
+        </div>
+
+        <div class="col-md-5 lint_inline">
+          <div id="checked_wrap" class="lint_text">
+            <p>DEFAULT</p>
+          </div>
         </div>
       <% end %>
     </div>
-
-    <div id="checked_wrap">
-      <textarea id="edit_input" style="width: 100%;" rows="20">DEFAULT</textarea>
-    </div>
-
   </div>
 </div>
-
-<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Bottom navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-      <li class="nav-item dropup">
-        <a class="nav-link dropdown-toggle" href="https://getbootstrap.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown10">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>

@@ -10,7 +10,9 @@ class ProofreadingApi
 
   def request
     res = self.call_get_api
-    p JSON.parse(res.body)
+    body = JSON.parse(res.body)
+    checked_sentense = body["checkedSentence"]
+    return format_text(checked_sentense)
   end
 
   def call_get_api
@@ -29,9 +31,11 @@ class ProofreadingApi
   private
 
   def format_text(checked_sentense)
-    while checked_sentense =~ /^.*(\s<<).(>>\s)/
-      #checked_sentense.gsub
+    while checked_sentense =~ /^.*(\s<<)|^.*(>>\s)/
+      checked_sentense.gsub!(checked_sentense.match(/^.*(\s<<)/)[1], '<mark>')
+      checked_sentense.gsub!(checked_sentense.match(/^.*(>>\s)/)[1], '</mark>')
     end
+    return checked_sentense
   end
 
 end
