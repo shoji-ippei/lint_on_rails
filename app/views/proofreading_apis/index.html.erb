@@ -8,7 +8,7 @@
         <%= form_with model: @proofreading_api, url: request_path, id: 'text_form', class: 'row', method: :get do |f| %>
           <div class="col-lg-5 col-md-12 lint_inline">
             <div class="form-group">
-              <%= f.text_area :text, maxlength: 500, rows: 20, value: 'チェックの対照となる文章をここに入力してくさだい。これはテスT用の文章です。', class: "form-control lint_text" %>
+              <%= f.text_area :text, maxlength: 500, rows: 20, value: 'チェックの対照となる文章をここに入力してくさだい。これはテスT用の文章です。', class: "form-control lint-text" %>
             </div>
           </div>
 
@@ -19,7 +19,7 @@
           </div>
 
           <div class="col-lg-5 col-md-12 lint_inline">
-            <div id="checked_wrap" class="lint_text">
+            <div id="checked_wrap" class="lint-text">
               <p>チェック後の結果がここに表示されます。</p>
             </div>
           </div>
