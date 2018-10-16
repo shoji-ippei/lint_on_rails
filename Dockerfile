@@ -7,6 +7,7 @@ WORKDIR $APP_ROOT
 RUN apt-get update && \
     apt-get install -y nodejs \
                        sqlite3 \
+                       vim \
                        --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
