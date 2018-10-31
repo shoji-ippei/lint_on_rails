@@ -60,4 +60,6 @@ Rails.application.configure do
   end
 =end
 
+  config.read_encrypted_secrets = true
+
 end
